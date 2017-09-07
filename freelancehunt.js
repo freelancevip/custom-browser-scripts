@@ -4,11 +4,13 @@
      * @returns {Number}
      */
     function getMiddleBid() {
-        var course = 0.43,
+        var courseRub = 0.43,
+            courseUsd = 26,
             sum = 0,
             text,
             bid,
             rub = '₽',
+            usd = '$',
             $bidLabels = $("[data-original-title^='Стоимость работы ']"),
             count = $bidLabels.length;
         if (0 === count) {
@@ -18,7 +20,10 @@
             text = $(el).text();
             bid = parseInt(text);
             if (-1 !== text.indexOf(rub)) {
-                bid *= course;
+                bid *= courseRub;
+            }
+            if (-1 !== text.indexOf(usd)) {
+                bid *= courseUsd;
             }
             sum += bid;
         });
