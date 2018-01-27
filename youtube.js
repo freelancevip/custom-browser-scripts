@@ -2,7 +2,15 @@
 	/**
 	 * Подсветка текущего видео в плейлисте
 	 */
-	var current = document.querySelectorAll("span.ytd-playlist-panel-video-renderer:not(:empty)~#meta")[0];
-	if(current !== undefined)
-	    current.style.background =  "#8cc028";
+	var css = 'span.ytd-playlist-panel-video-renderer:not(:empty)~#meta {background: #8cc028;}',
+    head = document.head || document.getElementsByTagName('head')[0],
+    style = document.createElement('style');
+    style.type = 'text/css';
+	if (style.styleSheet){
+	  style.styleSheet.cssText = css;
+	} else {
+	  style.appendChild(document.createTextNode(css));
+	}
+
+	head.appendChild(style);
 })();
